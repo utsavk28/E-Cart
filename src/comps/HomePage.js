@@ -1,6 +1,6 @@
-import React from 'react'
-import SlideShowProducts from './SlideShowProducts'
-import CategoryShowCase from './CategoryShowCase'
+import React from 'react';
+import SlideShowProducts from './Layout/SlideShowProducts';
+import CategoryShowCase from './Category/CategoryShowCase';
 
 const HomePage = () => {
     return (
@@ -8,7 +8,7 @@ const HomePage = () => {
             <SlideShowProducts />
             <CategoryShowCase />
         </div>
-    )
-}
+    );
+};
 
-export default HomePage
+export default HomePage;

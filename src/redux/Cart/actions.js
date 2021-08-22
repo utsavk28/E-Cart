@@ -1,17 +1,23 @@
-import { ADDITEMREQUEST } from './actionTypes'
+import { ADDITEMS, GETITEMS,CLEARCART } from './actionTypes';
 
-export const addItemRequest = (product,quantity=1) => {
-    return {
-        type: ADDITEMREQUEST,
+export const addItem = (product, quantity) => (dispatch) => {
+    dispatch({
+        type: ADDITEMS,
         payload: {
             quantity,
-            product
-        }
-    }
-}
+            product,
+        },
+    });
+};
 
-export const addItem = (quantity, product) => {
-    return (dispatch) => {
-        dispatch(addItemRequest(quantity, product))
-    }
+export const getItem = () => (dispatch) => {
+    dispatch({
+        type: GETITEMS,
+    });
+};
+
+export const clearCart = () => (dispatch) => {
+    dispatch({
+        type: CLEARCART,
+    })
 }

@@ -1,27 +1,45 @@
-import { ADDITEMREQUEST } from './actionTypes'
+import { ADDITEMS, GETITEMS, CLEARCART } from './actionTypes';
 
 const initialState = {
-    products: {}
-}
+    products: {},
+};
+
+var prods;
 
 const reducer = (state = initialState, action) => {
-    const { type, payload } = action
+    const { type, payload } = action;
     const { products } = state;
     switch (type) {
-        case ADDITEMREQUEST:
-            return {
-                ...state,
+        case ADDITEMS:
+            prods = {
                 products: {
                     ...products,
                     [payload.product.id]: {
-                        quantity: payload.quantity,
-                        product: payload.product
-                    }
-                }
-            }
+                        quantity: products[payload.product.id]
+                            ? products[payload.product.id].quantity +
+                              payload.quantity
+                            : payload.quantity,
+                        product: payload.product,
+                    },
+                },
+            };
+            localStorage.setItem('cart', JSON.stringify(prods));
+            return prods;
+        case GETITEMS:
+            prods = localStorage.getItem('cart');
+            return prods
+                ? JSON.parse(prods)
+                : {
+                      products: {},
+                  };
+        case CLEARCART:
+            localStorage.removeItem('cart');
+            return {
+                products: {},
+            };
         default:
-            return state
+            return state;
     }
-}
+};
 
-export default reducer
+export default reducer;

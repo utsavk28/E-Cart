@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { addItem } from '../redux/Cart/actions';
+import { addItem } from '../../redux/Cart/actions';
 import { useDispatch } from 'react-redux'
 
 const ProductCard = ({ product }) => {
@@ -25,7 +25,7 @@ const ProductCard = ({ product }) => {
             </div>
 
             <p><button className="product-card-button" onClick={() => {
-                dispatch(addItem(product))
+                dispatch(addItem(product,1))
             }} >Add to Cart</button></p>
         </div>
     )
